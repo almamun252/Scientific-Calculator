@@ -12,6 +12,7 @@ void pause_Screen();
 void basic_operations();
 void advanced_operations();
 void logarithm_functions();
+void trigonometric_functions();
 
 
 
@@ -36,7 +37,7 @@ int main(){
             advanced_operations();
             break;
         case 3:
-            printf(" Trigonometric Functions Selected \n");
+            trigonometric_functions();
             break;
         case 4:
             printf(" Special Functions Selected \n");
@@ -301,5 +302,114 @@ void logarithm_functions(){
                 pause_Screen();
                 break;
         }
+    }
+}
+
+//<<--Trigonometric Functions-->>
+
+void trigonometric_functions(){
+    int choice;
+    double angle, radians;
+
+    while(1){
+        clear_screen();
+        printf("\n");
+        printf(" ------------------------------------------------------- \n");
+        printf("|            ==== Trigonometric Functions ====          |\n");
+        printf("|-------------------------------------------------------|\n");
+        printf("| [1] Sin        [2] Cos        [3] Tan                 |\n");
+        printf("| [4] A Sin      [5] A Cos      [6] A Tan               |\n");
+        printf("| [7] Sin h      [8] Cos h      [9] Tan h               |\n");
+        printf("| [0] Back to Main Menu                                 |\n");
+        printf(" ------------------------------------------------------- \n");
+        printf("  Ans: %.2lf                                            \n",curr_result);
+        printf(" ------------------------------------------------------- \n");
+        printf(" Select Operation: ");
+
+        if(scanf("%d",&choice)!=1){
+            clear_input_buff();
+            continue;
+        }
+        if(choice == 0){
+            break;
+        }
+
+        if(choice >=1 && choice <=3){
+            printf(" Enter angle in degrees: ");
+            if(scanf("%lf",&angle)!=1){
+                clear_input_buff();
+                continue;
+            }
+            radians = angle * (pi / 180.0);
+
+            switch(choice){
+                case 1:
+                    curr_result = sin(radians);
+                    break;
+                case 2:
+                    curr_result = cos(radians);
+                    break;
+                case 3:
+                    if(fabs(cos(radians)) > 1e-10){
+                        curr_result = tan(radians);
+                    } else {
+                        printf(" Error: Tangent undefined for this angle! \n");
+                        pause_Screen();
+                        continue;
+                    }
+                    break;
+            }
+        } else if(choice >=4 && choice <=6){
+            printf(" Enter value: ");
+            if(scanf("%lf",&angle)!=1){
+                clear_input_buff();
+                continue;
+            }
+
+            switch(choice){
+                case 4:
+                    if(angle >= -1 && angle <= 1){
+                        curr_result = asin(angle) * (180.0 / pi);
+                    } else {
+                        printf(" Error: Invalid input for arcsin! \n");
+                        pause_Screen();
+                    }
+                    break;
+                case 5:
+                    if(angle >= -1 && angle <= 1){
+                        curr_result = acos(angle) * (180.0 / pi);
+                    } else {
+                        printf(" Error: Invalid input for arccos! \n");
+                        pause_Screen();
+                    }
+                    break;
+                case 6:
+                    curr_result = atan(angle) * (180.0 / pi);
+                    break;
+            }
+        } else if(choice >=7 && choice <=9){
+            printf(" Enter value: ");
+            if(scanf("%lf",&angle)!=1){
+                clear_input_buff();
+                continue;
+            }
+
+            switch(choice){
+                case 7:
+                    curr_result = sinh(angle);
+                    break;
+                case 8:
+                    curr_result = cosh(angle);
+                    break;
+                case 9:
+                    curr_result = tanh(angle);
+                    break;
+            }
+        } else {
+            printf(" Invalid Choice! Please try again. \n");
+            pause_Screen();
+        }
+
+       
     }
 }
