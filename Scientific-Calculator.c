@@ -13,6 +13,7 @@ void basic_operations();
 void advanced_operations();
 void logarithm_functions();
 void trigonometric_functions();
+void special_functions();
 
 
 
@@ -40,7 +41,7 @@ int main(){
             trigonometric_functions();
             break;
         case 4:
-            printf(" Special Functions Selected \n");
+            special_functions();
             break;
         case 5:
             printf(" Exiting... \n");
@@ -55,6 +56,8 @@ int main(){
     
     return 0;
 }
+
+// <<--Main Interface Function-->>
 
 void main_interface(){
     clear_screen();
@@ -412,4 +415,85 @@ void trigonometric_functions(){
 
        
     }
+}
+
+//<<--Special Functions-->>
+
+void special_functions(){
+    int choice;
+    double num1, num2;
+    int n;
+
+    while(1){
+        clear_screen();
+        printf(" ------------------------------------------------------- \n");
+        printf("|               ==== Special Functions ====             |\n");
+        printf("| [1] Factorial(n!)            [2] Modulo(a %% b)       |\n");
+        printf("| [3] Absolute Value(|x|)      [4]Back to Main Menu     |\n");
+        printf(" ------------------------------------------------------- \n");
+        printf("| Ans: %.2lf                                             |\n",curr_result);
+        printf(" ------------------------------------------------------- \n");
+        printf(" Select Operation: ");
+
+        if(scanf("%d",&choice)!=1){
+            clear_input_buff();
+            continue;
+        }
+
+        if(choice ==4){
+            break;
+        }
+
+        switch(choice){
+            case 1:
+                printf(" Enter a non-negative integer: ");
+                if(scanf("%d",&n)!=1 || n < 0){
+                    clear_input_buff();
+                    printf(" Error: Invalid input for factorial! \n");
+                    pause_Screen();
+                    continue;
+                }else if(n > 20){
+                    printf(" Error: Factorial result too large to compute! \n");
+                    pause_Screen();
+                    continue;
+                }
+                else{
+                    unsigned long long fact = 1;
+                    for(int i=1; i<=n; i++){
+                        fact *= i;
+                    }
+                    curr_result = (double)fact;
+                }
+                break;
+            case 2:
+                printf(" Enter first number (a): ");
+                if(scanf("%lf",&num1)!=1){
+                    clear_input_buff();
+                    continue;
+                }
+                printf(" Enter second number (b): ");
+                if(scanf("%lf",&num2)!=1 || num2 == 0){
+                    clear_input_buff();
+                    printf(" Error: Invalid input for modulo! \n");
+                    pause_Screen();
+                    continue;
+                }
+                curr_result = fmod(num1, num2);
+                break;
+            case 3:
+                printf(" Enter number: ");
+                if(scanf("%lf",&num1)!=1){
+                    clear_input_buff();
+                    continue;
+                }
+                curr_result = fabs(num1);
+                break;
+
+            default:
+                printf(" Invalid Choice! Please try again. \n");
+                pause_Screen();
+                break;
+        }
+    }
+
 }
