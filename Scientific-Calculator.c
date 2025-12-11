@@ -175,6 +175,13 @@ void basic_operations(){
             break;
         }
 
+        if(choice < 1 || choice > 4){
+            printf(" Invalid Choice! Please try again. \n");
+            clear_input_buff();
+            pause_Screen();
+            continue;
+        }
+
         printf(" Enter first number: ");
         if(scanf("%lf",&num1)!=1){
             clear_input_buff();
@@ -220,6 +227,7 @@ void basic_operations(){
 
             default:
                 printf(" Invalid Choice! Please try again. \n");
+                clear_input_buff();
                 pause_Screen();
                 break;
         }
@@ -319,6 +327,7 @@ void advanced_operations(){
 
             default:
                 printf(" Invalid Choice! Please try again. \n");
+                clear_input_buff();
                 pause_Screen();
                 break;
         }
@@ -412,6 +421,7 @@ void logarithm_functions(){
 
             default:
                 printf(" Invalid Choice! Please try again. \n");
+                clear_input_buff();
                 pause_Screen();
                 break;
         }
@@ -547,6 +557,7 @@ void trigonometric_functions(){
             }
         } else {
             printf(" Invalid Choice! Please try again. \n");
+            clear_input_buff();
             pause_Screen();
         }
 
@@ -618,6 +629,7 @@ void special_functions(){
                 if(scanf("%lf",&num2)!=1 || num2 == 0){
                     clear_input_buff();
                     printf(" Error: Invalid input for modulo! \n");
+                    clear_input_buff();
                     pause_Screen();
                     continue;
                 }
@@ -639,6 +651,7 @@ void special_functions(){
 
             default:
                 printf(" Invalid Choice! Please try again. \n");
+                clear_input_buff();
                 pause_Screen();
                 break;
         }
