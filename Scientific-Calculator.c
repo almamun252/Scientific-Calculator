@@ -175,7 +175,8 @@ void advanced_operations(){
         printf("|             ==== Advanced Operations ====             |\n");
         printf("|-------------------------------------------------------|\n");
         printf("| [1] Power(x^y)             [2] Square Root            |\n");
-        printf("| [3] Logarithm              [4] Back to Main Menu      |\n");
+        printf("| [3] Cubic root             [4] Logarithm              |\n");
+        printf("| [5] Exponential(e^x)       [6] Back to Main Menu      |\n");
         printf(" ------------------------------------------------------- \n");
         printf("| Ans: %.2lf                                             |\n",curr_result);
         printf(" ------------------------------------------------------- \n");
@@ -186,7 +187,7 @@ void advanced_operations(){
             continue;
         }
 
-        if(choice == 4){
+        if(choice == 6){
             break;
         }
 
@@ -204,6 +205,7 @@ void advanced_operations(){
                 }
                 curr_result = pow(base, power);
                 break;
+
             case 2:
                 printf(" Enter number: ");
                 if(scanf("%lf",&num)!=1){
@@ -217,9 +219,29 @@ void advanced_operations(){
                     pause_Screen();
                 }
                 break;
+
             case 3:
+                printf(" Enter number: ");
+                if(scanf("%lf",&num)!=1){
+                    clear_input_buff();
+                    continue;
+                }          
+                curr_result = cbrt(num);
+                break;
+
+            case 4:
                 logarithm_functions();
                 break;
+
+            case 5:
+                printf(" Enter exponent: ");
+                if(scanf("%lf",&num)!=1){
+                    clear_input_buff();
+                    continue;
+                }
+                curr_result = exp(num);
+                break;
+
             default:
                 printf(" Invalid Choice! Please try again. \n");
                 pause_Screen();
